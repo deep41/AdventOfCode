@@ -1,24 +1,25 @@
-import heapq
-from collections import Counter
+from collections import defaultdict
 
-l_heap = []
-r_heap = []
+l_list = []
+r_list = []
+l_counter = defaultdict(int)
+r_counter = defaultdict(int)
 
 ans_1 = 0
 
 with open(r"input.data", 'r') as file:
   for line in file.readlines():
     data = line.strip().split("   ")
+    l, r = int(data[0]), int(data[1])
+    l_list.append(l)
+    r_list.append(r)
+    l_counter[l] += 1
+    r_counter[r] += 1
 
-    heapq.heappush(l_heap, int(data[0]))
-    heapq.heappush(r_heap, int(data[1]))
-
-l_counter = Counter(l_heap)
-r_counter = Counter(r_heap)
-
-while l_heap:
-  l_item, r_item = heapq.heappop(l_heap), heapq.heappop(r_heap)
-  ans_1 += abs(l_item - r_item)
+r_list.sort()
+l_list.sort()
+for i in range(len(l_list)):
+  ans_1 += abs(l_list[i] - r_list[i])
 
 print("Part 1:", ans_1)
 
