@@ -7,7 +7,7 @@ r_counter = defaultdict(int)
 
 ans_1 = 0
 
-with open(r"input.data", 'r') as file:
+with open(r"day1.input", 'r') as file:
   for line in file.readlines():
     data = line.strip().split("   ")
     l, r = int(data[0]), int(data[1])
